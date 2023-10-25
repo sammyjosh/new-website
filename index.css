@@ -1,0 +1,20 @@
+/* Import the base Tailwind CSS styles */
+@import 'tailwindcss/base.css';
+
+/* Import the components styles */
+@import 'tailwindcss/components.css';
+
+/* Import the utilities styles */
+@import 'tailwindcss/utilities.css';
+
+/* Add your custom styles below */
+/* Example custom styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Include additional CSS files if needed */
+/* @import 'path/to/another-stylesheet.css'; */
