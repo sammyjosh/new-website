@@ -36,12 +36,13 @@ const App = () => {
 
   return (
     <Router>
-      <div className={`min-h-screen bg-blue-500 relative ${open ? "ml-72" : "ml-20"}`}>
+      <div className="flex">
         {loggedIn && (
-          <nav className="bg-dark-purple p-5 absolute top-0 left-0 h-full transition-transform duration-300">
+          // Navigation sidebar when logged in
+          <nav className={`w-72 bg-blue-500 p-5 absolute top-0 left-0 h-full transition-transform duration-300 ${open ? "" : "-ml-72"}`}>
             {/* Navigation sidebar content */}
             <img
-              src="./src/assets/control.png"
+              src="src/logo.svg"
               className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple border-2 rounded-full ${!open && "rotate-180"}`}
               onClick={() => setOpen(!open)}
             />
@@ -51,7 +52,7 @@ const App = () => {
                 className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
               />
               <h1 className={`text-white origin-left font-medium text-xl duration-200 ${!open && "scale-0"}`}>
-                Your Logo
+               
               </h1>
             </div>
             <ul className="pt-6">
@@ -76,30 +77,32 @@ const App = () => {
           </nav>
         )}
         
-        {/* Routes and content */}
-        <Routes>
-          {loggedIn ? (
-            <>
-              <Route path="/about" element={<About />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/athletics" element={<Athletics />} />
-              <Route path="/badminton" element={<Badminton />} />
-              <Route path="/table-tennis" element={<TableTennis />} />
-            </>
-          ) : (
-            <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
-          )}
-          <Route
-            path="/"
-            element={
-              loggedIn ? (
-                <Home onLogout={handleLogout} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-        </Routes>
+        <div className={`min-h-screen bg-white relative flex-1 ${loggedIn ? "ml-72" : "ml-0"}`}>
+          {/* Routes and content */}
+          <Routes>
+            {loggedIn ? (
+              <>
+                <Route path="/about" element={<About />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/athletics" element={<Athletics />} />
+                <Route path="/badminton" element={<Badminton />} />
+                <Route path="/table-tennis" element={<TableTennis />} />
+              </>
+            ) : (
+              <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
+            )}
+            <Route
+              path="/"
+              element={
+                loggedIn ? (
+                  <Home onLogout={handleLogout} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+          </Routes>
+        </div>
       </div>
     </Router>
   );
